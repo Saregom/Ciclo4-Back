@@ -64,6 +64,21 @@ public class UserService {
                 if (user.getPassword() != null) {
                     cli.get().setPassword(user.getPassword());
                 }
+                if (user.getIdentification() != null) {
+                    cli.get().setIdentification(user.getIdentification());
+                }
+                if (user.getAddress() != null) {
+                    cli.get().setAddress(user.getAddress());
+                }
+                if (user.getCellPhone() != null) {
+                    cli.get().setCellPhone(user.getCellPhone());
+                }
+                if (user.getZone() != null) {
+                    cli.get().setZone(user.getZone());
+                }
+                if (user.getType() != null) {
+                    cli.get().setType(user.getType());
+                }
 
                 return userRepository.save(cli.get());
             }
