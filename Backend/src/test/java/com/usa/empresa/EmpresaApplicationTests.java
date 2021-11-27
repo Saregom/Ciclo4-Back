@@ -1,10 +1,10 @@
-package com.ciclo4reto1;
+package com.usa.empresa;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Ciclo4Reto1ApplicationTests {
+class EmpresaApplicationTests {
 
 	@Test
 	void contextLoads() {
