@@ -26,14 +26,18 @@ public class UserService {
     }
 
     public User save(User user) {
-        if (user.getId() != null) {
-            if (existeEmail(user.getEmail()) == false) {
-                return userRepository.save(user);
-            } else {
+        if (user.getId() == null) {
+            return user;
+        }else{
+            Optional<User> usa = userRepository.getIdUser(user.getId());
+            if(usa.isPresent()){
                 return user;
             }
-        } else {
-            return user;
+            if (existeEmail(user.getEmail()) == false){
+                return userRepository.save(user);
+            }else{
+                return user;
+            }
         }
     }
 
