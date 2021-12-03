@@ -109,7 +109,7 @@ public class UserController {
      * @return
      */
     @GetMapping("/emailexist/{email}")
-    public boolean existeEmail(@PathVariable("email") String email) {
+    public boolean existEmail(@PathVariable("email") String email) {
         return userService.existeEmail(email);
     }
 }
