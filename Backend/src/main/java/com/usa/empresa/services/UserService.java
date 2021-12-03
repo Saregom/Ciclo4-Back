@@ -17,8 +17,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> getAllUser() {
-        return userRepository.getAllUser();
+    public List<User> getAll() {
+        return userRepository.getAll();
     }
 
     public Optional<User> getIdUser(int idUser) {
@@ -47,49 +47,49 @@ public class UserService {
         if (usuario.isPresent()) {
             return usuario.get();
         } else {
-            return new User();//Falta corregir
+            return new User();
         }
     }
 
     public User update(User user) {
         if (user.getId() != null) {
-            Optional<User> cli = userRepository.getIdUser(user.getId());
-            if (cli.isPresent()) {
+            Optional<User> userAux = userRepository.getIdUser(user.getId());
+            if (userAux.isPresent()) {
                 if (user.getName() != null) {
-                    cli.get().setName(user.getName());
+                    userAux.get().setName(user.getName());
                 }
                 if (user.getEmail() != null) {
-                    cli.get().setEmail(user.getEmail());
+                    userAux.get().setEmail(user.getEmail());
                 }
                 if (user.getPassword() != null) {
-                    cli.get().setPassword(user.getPassword());
+                    userAux.get().setPassword(user.getPassword());
                 }
                 if (user.getIdentification() != null) {
-                    cli.get().setIdentification(user.getIdentification());
+                    userAux.get().setIdentification(user.getIdentification());
                 }
                 if (user.getAddress() != null) {
-                    cli.get().setAddress(user.getAddress());
+                    userAux.get().setAddress(user.getAddress());
                 }
                 if (user.getCellPhone() != null) {
-                    cli.get().setCellPhone(user.getCellPhone());
+                    userAux.get().setCellPhone(user.getCellPhone());
                 }
                 if (user.getZone() != null) {
-                    cli.get().setZone(user.getZone());
+                    userAux.get().setZone(user.getZone());
                 }
                 if (user.getType() != null) {
-                    cli.get().setType(user.getType());
+                    userAux.get().setType(user.getType());
                 }
 
-                return userRepository.save(cli.get());
+                return userRepository.save(userAux.get());
             }
         }
         return user;
     }
 
     public boolean deleteUser(int id) {
-        Optional<User> cli = getIdUser(id);
-        if (cli.isPresent()) {
-            userRepository.delete(cli.get());
+        Optional<User> user = getIdUser(id);
+        if (user.isPresent()) {
+            userRepository.delete(user.get());
             return true;
         }
         return false;

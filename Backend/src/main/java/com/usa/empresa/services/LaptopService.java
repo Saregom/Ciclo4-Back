@@ -11,65 +11,78 @@ import org.springframework.stereotype.Service;
 public class LaptopService {
 
     @Autowired
-        private LaptopRepository LaptopRepository;
+    private LaptopRepository LaptopRepository;
 
-        public List<Laptop> getAll() {
-            return LaptopRepository.getAll();
-        }
-
-        public Optional<Laptop> getcomp(Integer reference) {
-            return LaptopRepository.getId(reference);
-        }
-
-        public Laptop create(Laptop accesory) {
-            if (accesory.getModel() == null) {
-                return accesory;
-            } else {
-                return LaptopRepository.create(accesory);
-            }
-        }
-
-        public Laptop update(Laptop accesory) {
-
-            if (accesory.getModel() != null) {
-                Optional<Laptop> accesoryDb = LaptopRepository.getId(accesory.getId());
-                if (!accesoryDb.isEmpty()) {
-
-                    if (accesory.getBrand()!= null) {
-                        accesoryDb.get().setBrand(accesory.getBrand());
-                    }
-
-                    if (accesory.getDescription() != null) {
-                        accesoryDb.get().setDescription(accesory.getDescription());
-                    }
-                    if (accesory.getPrice() != 0.0) {
-                        accesoryDb.get().setPrice(accesory.getPrice());
-                    }
-                    if (accesory.getQuantity() != 0) {
-                        accesoryDb.get().setQuantity(accesory.getQuantity());
-                    }
-                    if (accesory.getPhotography() != null) {
-                        accesoryDb.get().setPhotography(accesory.getPhotography());
-                    }
-                    accesoryDb.get().setAvailability(accesory.isAvailability());
-                    LaptopRepository.update(accesoryDb.get());
-                    return accesoryDb.get();
-                } else {
-                    return accesory;
-                }
-            } else {
-                return accesory;
-            }
-        }
-
-        public boolean delete(Integer reference) {
-            Boolean aBoolean = getcomp(reference).map(accesory -> {
-                LaptopRepository.delete(accesory);
-                return true;
-            }).orElse(false);
-            return aBoolean;
-        }
-
-
+    public List<Laptop> getAll() {
+        return LaptopRepository.getAll();
     }
 
+    public Optional<Laptop> getIdLaptop(Integer id) {
+        return LaptopRepository.getIdLaptop(id);
+    }
+
+    public Laptop save(Laptop laptop) {
+        if (laptop.getModel() != null) {
+            return LaptopRepository.save(laptop);
+        } else {
+            return laptop;
+        }
+    }
+
+    public Laptop update(Laptop laptop) {
+        if (laptop.getModel() != null) {
+            Optional<Laptop> laptopAux = LaptopRepository.getIdLaptop(laptop.getId());
+            if (!laptopAux.isEmpty()) {
+                if (laptop.getBrand()!= null) {
+                    laptopAux.get().setBrand(laptop.getBrand());
+                }
+                if (laptop.getModel()!= null) {
+                    laptopAux.get().setBrand(laptop.getBrand());
+                }
+                if (laptop.getProcesor()!= null) {
+                    laptopAux.get().setBrand(laptop.getBrand());
+                }
+                if (laptop.getOs()!= null) {
+                    laptopAux.get().setDescription(laptop.getDescription());
+                }
+                if (laptop.getDescription()!= null) {
+                    laptopAux.get().setDescription(laptop.getDescription());
+                }
+                if (laptop.getMemory()!= null) {
+                    laptopAux.get().setDescription(laptop.getDescription());
+                }
+                if (laptop.getHardDrive()!= null) {
+                    laptopAux.get().setDescription(laptop.getDescription());
+                }
+                if (laptop.getAvailability()!= null) {
+                    laptopAux.get().setDescription(laptop.getDescription());
+                }
+                if (laptop.getPrice() != 0.0) {
+                    laptopAux.get().setPrice(laptop.getPrice());
+                }
+                if (laptop.getQuantity() != 0) {
+                    laptopAux.get().setQuantity(laptop.getQuantity());
+                }
+                if (laptop.getPhotography() != null) {
+                    laptopAux.get().setPhotography(laptop.getPhotography());
+                }
+                //accesoryDb.get().setAvailability(laptop.isAvailability());
+                LaptopRepository.update(laptopAux.get());
+                return laptopAux.get();
+            } else {
+                return laptop;
+            }
+        } else {
+            return laptop;
+        }
+    }
+
+    public boolean delete(Integer id) {
+        Optional<Laptop> laptop = getIdLaptop(id);
+        if (laptop.isPresent()) {
+            LaptopRepository.delete(laptop.get());
+            return true;
+        }
+        return false;
+    }
+}

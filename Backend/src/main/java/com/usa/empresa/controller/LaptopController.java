@@ -10,38 +10,38 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/supplements")
+@RequestMapping("/api/laptop")
 @CrossOrigin("*")
 public class LaptopController {
     @Autowired
-    private LaptopService accessoryService;
+    private LaptopService laptopService;
 
     @GetMapping("/all")
     public List<Laptop> getAll() {
-        return accessoryService.getAll();
+        return laptopService.getAll();
     }
 
-    @GetMapping("/{reference}")
-    public Optional<Laptop> getClothe(@PathVariable("reference") Integer reference) {
-        return accessoryService.getcomp(reference);
+    @GetMapping("/{id}")
+    public Optional<Laptop> getIdLaptop(@PathVariable("id") Integer id) {
+        return laptopService.getIdLaptop(id);
     }
 
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
-    public Laptop create(@RequestBody Laptop gadget) {
-        return accessoryService.create(gadget);
+    public Laptop save(@RequestBody Laptop laptop) {
+        return laptopService.save(laptop);
     }
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Laptop update(@RequestBody Laptop gadget) {
-        return accessoryService.update(gadget);
+    public Laptop update(@RequestBody Laptop laptop) {
+        return laptopService.update(laptop);
     }
 
-    @DeleteMapping("/{reference}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("reference") Integer reference) {
-        return accessoryService.delete(reference);
+    public boolean delete(@PathVariable("id") Integer id) {
+        return laptopService.delete(id);
     }
 
 }

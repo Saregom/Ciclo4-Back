@@ -12,25 +12,25 @@ import java.util.Optional;
 public class LaptopRepository {
 
     @Autowired
-        private LaptopCrudRepository LaptopCrudRepository;
+        private LaptopCrudRepository laptopCrudRepository;
 
-        public List<Laptop> getAll() {
-            return LaptopCrudRepository.findAll();
+        public List<Laptop> getAll(){
+            return laptopCrudRepository.findAll();
         }
 
-        public Optional<Laptop> getId(Integer id) {
-            return LaptopCrudRepository.findById(id);
+        public Optional<Laptop> getIdLaptop(Integer id) {
+            return laptopCrudRepository.findById(id);
         }
-        public Laptop create(Laptop comp) {
-            return LaptopCrudRepository.save(comp);
-        }
-
-        public void update(Laptop comp) {
-            LaptopCrudRepository.save(comp);
+        public Laptop save(Laptop laptop) {
+            return laptopCrudRepository.save(laptop);
         }
 
-        public void delete(Laptop comp) {
-            LaptopCrudRepository.delete(comp);
+        public void update(Laptop laptop) {
+            laptopCrudRepository.save(laptop);
+        }
+
+        public void delete(Laptop laptop) {
+            laptopCrudRepository.delete(laptop);
         }
     }
 
