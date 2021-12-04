@@ -17,7 +17,7 @@ public class UserRepository {
     @Autowired
     private UserCrudRepository userCrudRepository;
 
-    public List<User> getAllUser() {
+    public List<User> getAll() {
         return (List<User>) userCrudRepository.findAll();
     }
 
@@ -36,7 +36,6 @@ public class UserRepository {
     public boolean existeEmail(String email) {
         Optional<User> usuario = userCrudRepository.findByEmail(email);
         return usuario.isPresent();
-        //return !usuario.isEmpty();
     }
 
     public Optional<User> autenticarUsuario(String email, String password) {

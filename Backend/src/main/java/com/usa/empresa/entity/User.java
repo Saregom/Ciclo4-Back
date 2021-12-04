@@ -1,6 +1,7 @@
 package com.usa.empresa.entity;
 
 //import java.util.Date;
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,8 +17,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "usuarios")
-public class User {
-
+public class User implements Serializable{
     @Id
     private Integer id;
     private String identification;

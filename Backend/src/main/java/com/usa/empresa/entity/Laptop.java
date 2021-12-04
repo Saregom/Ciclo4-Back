@@ -14,9 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "laptops")
-
 public class Laptop {
-
     @Id
     private Integer id;
     private String brand;
@@ -26,9 +24,8 @@ public class Laptop {
     private String description;
     private String memory;
     private String hardDrive;
-    private boolean availability = true;
-    private double price;
-    private int quantity;
+    private Boolean availability;
+    private Double price;
+    private Integer quantity;
     private String photography;
-
 }

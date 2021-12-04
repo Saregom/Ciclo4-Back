@@ -39,8 +39,8 @@ public class UserController {
      * @return
      */
     @GetMapping("/all")
-    public List<User> getAllUser() {
-        return userService.getAllUser();
+    public List<User> getAll() {
+        return userService.getAll();
     }
 
     /**
@@ -49,7 +49,7 @@ public class UserController {
      * @param idUser
      * @return
      */
-    @GetMapping("/={id}")
+    @GetMapping("/{id}")
     public Optional<User> getIdUser(@PathVariable("id") int idUser) {
         return userService.getIdUser(idUser);
     }
@@ -109,7 +109,7 @@ public class UserController {
      * @return
      */
     @GetMapping("/emailexist/{email}")
-    public boolean existeEmail(@PathVariable("email") String email) {
+    public boolean existEmail(@PathVariable("email") String email) {
         return userService.existeEmail(email);
     }
 }
