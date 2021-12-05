@@ -37,30 +37,30 @@ public class LaptopService {
                     laptopAux.get().setBrand(laptop.getBrand());
                 }
                 if (laptop.getModel()!= null) {
-                    laptopAux.get().setBrand(laptop.getBrand());
+                    laptopAux.get().setModel(laptop.getModel());
                 }
                 if (laptop.getProcesor()!= null) {
-                    laptopAux.get().setBrand(laptop.getBrand());
+                    laptopAux.get().setProcesor(laptop.getProcesor());
                 }
                 if (laptop.getOs()!= null) {
-                    laptopAux.get().setDescription(laptop.getDescription());
+                    laptopAux.get().setOs(laptop.getOs());
                 }
                 if (laptop.getDescription()!= null) {
                     laptopAux.get().setDescription(laptop.getDescription());
                 }
                 if (laptop.getMemory()!= null) {
-                    laptopAux.get().setDescription(laptop.getDescription());
+                    laptopAux.get().setMemory(laptop.getMemory());
                 }
                 if (laptop.getHardDrive()!= null) {
-                    laptopAux.get().setDescription(laptop.getDescription());
+                    laptopAux.get().setHardDrive(laptop.getHardDrive());
                 }
                 if (laptop.getAvailability()!= null) {
-                    laptopAux.get().setDescription(laptop.getDescription());
+                    laptopAux.get().setAvailability(laptop.getAvailability());
                 }
-                if (laptop.getPrice() != 0.0) {
+                if (laptop.getPrice() != 0.0 & laptop.getPrice() != null) {
                     laptopAux.get().setPrice(laptop.getPrice());
                 }
-                if (laptop.getQuantity() != 0) {
+                if (laptop.getQuantity() != null) {
                     laptopAux.get().setQuantity(laptop.getQuantity());
                 }
                 if (laptop.getPhotography() != null) {
