@@ -57,10 +57,10 @@ public class LaptopService {
                 if (laptop.getAvailability()!= null) {
                     laptopAux.get().setAvailability(laptop.getAvailability());
                 }
-                if (laptop.getPrice() != 0.0 & laptop.getPrice() != null) {
+                if (laptop.getPrice() > 0.0 & laptop.getPrice() != null) {
                     laptopAux.get().setPrice(laptop.getPrice());
                 }
-                if (laptop.getQuantity() != null) {
+                if (laptop.getQuantity() >= 0 & laptop.getQuantity() != null) {
                     laptopAux.get().setQuantity(laptop.getQuantity());
                 }
                 if (laptop.getPhotography() != null) {
