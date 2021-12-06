@@ -19,24 +19,23 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
- * @author NELSON
+ * @author grupo 5
  */
 @RestController
 @RequestMapping("/api/user")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class UserController {
-
+     
     /**
-     * Variable de clase UserService.
-     */
+     * Instancia de clase UserService.
+    */
     @Autowired
     private UserService userService;
 
     /**
      * Lista todos los usuarios registrados.
      *
-     * @return
+     * @return userService.getAll()
      */
     @GetMapping("/all")
     public List<User> getAll() {
@@ -47,7 +46,7 @@ public class UserController {
      * Devuelve un usuario pasando por parametro el Id.
      *
      * @param idUser
-     * @return
+     * @return userService.getIdUser(idUser)
      */
     @GetMapping("/{id}")
     public Optional<User> getIdUser(@PathVariable("id") int idUser) {
@@ -58,7 +57,7 @@ public class UserController {
      * Registrar un nuevo usuario.
      *
      * @param user
-     * @return
+     * @return userService.save(user)
      */
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
@@ -67,10 +66,10 @@ public class UserController {
     }
 
     /**
-     * Actualiza el nombre del usuario.
+     * Actualiza un usuario.
      *
      * @param user
-     * @return
+     * @return userService.update(user)
      */
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
@@ -82,7 +81,7 @@ public class UserController {
      * Borrar un usuario.
      *
      * @param id
-     * @return
+     * @return userService.deleteUser(id)
      */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -95,7 +94,7 @@ public class UserController {
      *
      * @param email
      * @param password
-     * @return
+     * @return userService.autenticarUsuario(email, password)
      */
     @GetMapping("/{email}/{password}")
     public User autenticarUsuario(@PathVariable("email") String email, @PathVariable("password") String password) {
@@ -106,7 +105,7 @@ public class UserController {
      * Verifica si existe un email.
      *
      * @param email
-     * @return
+     * @return userService.existeEmail(email)
      */
     @GetMapping("/emailexist/{email}")
     public boolean existEmail(@PathVariable("email") String email) {

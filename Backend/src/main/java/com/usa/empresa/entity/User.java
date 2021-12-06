@@ -1,18 +1,13 @@
 package com.usa.empresa.entity;
 
-import java.io.Serializable;
 import java.util.Date;
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/**
- * Administracion de usuarios.
- *
- * @author Grupo 5
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
