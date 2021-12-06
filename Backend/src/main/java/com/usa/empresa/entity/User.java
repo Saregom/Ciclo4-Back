@@ -1,7 +1,7 @@
 package com.usa.empresa.entity;
 
-//import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 /**
  * Administracion de usuarios.
  *
- * @author NELSON
+ * @author Grupo 5
  */
 @Data
 @NoArgsConstructor
@@ -22,8 +22,8 @@ public class User implements Serializable{
     private Integer id;
     private String identification;
     private String name;
-//    private Date birthtDay;
-//    private String monthBirthtDay;
+    private Date birthtDay;
+    private String monthBirthtDay;
     private String address;
     private String cellPhone;
     private String email;

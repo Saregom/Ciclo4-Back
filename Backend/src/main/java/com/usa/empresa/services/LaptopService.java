@@ -32,7 +32,7 @@ public class LaptopService {
     public Laptop update(Laptop laptop) {
         if (laptop.getModel() != null) {
             Optional<Laptop> laptopAux = LaptopRepository.getIdLaptop(laptop.getId());
-            if (!laptopAux.isEmpty()) {
+            if (laptopAux.isPresent()) {
                 if (laptop.getBrand()!= null) {
                     laptopAux.get().setBrand(laptop.getBrand());
                 }
