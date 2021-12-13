@@ -22,9 +22,19 @@ public class LaptopService {
     }
 
     public Laptop save(Laptop laptop) {
-        if (laptop.getModel() != null) {
+        Optional<Laptop> orderIdMaxima = LaptopRepository.lastUserId();
+        if (laptop.getId() == null) {
+            if (!orderIdMaxima.isPresent()) {
+                laptop.setId(1);
+            }else {
+                laptop.setId(orderIdMaxima.get().getId() + 1);
+            }
+        }
+        
+        Optional<Laptop> lap = LaptopRepository.getIdLaptop(laptop.getId());
+        if(!lap.isPresent()){
             return LaptopRepository.save(laptop);
-        } else {
+        }else{
             return laptop;
         }
     }

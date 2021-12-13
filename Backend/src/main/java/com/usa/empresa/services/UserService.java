@@ -22,32 +22,28 @@ public class UserService {
     }
 
     public User save(User user) {
+        Optional<User> orderIdMaxima = userRepository.lastUserId();
+        if (user.getId() == null) {
+            if (!orderIdMaxima.isPresent()) {
+                user.setId(1);
+            }else {
+                user.setId(orderIdMaxima.get().getId() + 1);
+            }
+        }
+        
         if (user.getId() == null) {
             return user;
         }else{
             Optional<User> usa = userRepository.getIdUser(user.getId());
-            if(usa.isPresent()){
-                return user;
-            }
-            if (existeEmail(user.getEmail()) == false){
-                return userRepository.save(user);
+            if(!usa.isPresent()){
+                if (existeEmail(user.getEmail()) == false){
+                    return userRepository.save(user);
+                }else{
+                    return user;
+                }
             }else{
                 return user;
             }
-        }
-    }
-
-    public boolean existeEmail(String email) {
-        return userRepository.existeEmail(email);
-    }
-
-    public User autenticarUsuario(String email, String password) {
-        Optional<User> usuario = userRepository.autenticarUsuario(email, password);
-
-        if (usuario.isPresent()) {
-            return usuario.get();
-        } else {
-            return new User();
         }
     }
 
@@ -55,17 +51,23 @@ public class UserService {
         if (user.getId() != null) {
             Optional<User> userAux = userRepository.getIdUser(user.getId());
             if (userAux.isPresent()) {
+                 if (user.getIdentification() != null) {
+                    userAux.get().setIdentification(user.getIdentification());
+                }
                 if (user.getName() != null) {
                     userAux.get().setName(user.getName());
+                }
+                if (user.getBirthtDay()!= null) {
+                    userAux.get().setBirthtDay(user.getBirthtDay());
+                }
+                if (user.getMonthBirthtDay()!= null) {
+                    userAux.get().setMonthBirthtDay(user.getMonthBirthtDay());
                 }
                 if (user.getEmail() != null) {
                     userAux.get().setEmail(user.getEmail());
                 }
                 if (user.getPassword() != null) {
                     userAux.get().setPassword(user.getPassword());
-                }
-                if (user.getIdentification() != null) {
-                    userAux.get().setIdentification(user.getIdentification());
                 }
                 if (user.getAddress() != null) {
                     userAux.get().setAddress(user.getAddress());
@@ -93,5 +95,19 @@ public class UserService {
             return true;
         }
         return false;
+    }
+    
+    public boolean existeEmail(String email) {
+        return userRepository.existeEmail(email);
+    }
+
+    public User autenticarUsuario(String email, String password) {
+        Optional<User> usuario = userRepository.autenticarUsuario(email, password);
+
+        if (usuario.isPresent()) {
+            return usuario.get();
+        } else {
+            return new User();
+        }
     }
 }

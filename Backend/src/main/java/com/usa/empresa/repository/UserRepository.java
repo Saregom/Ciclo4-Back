@@ -28,6 +28,10 @@ public class UserRepository {
     public void delete(User user) {
         userCrudRepository.delete(user);
     }
+    
+    public Optional<User> lastUserId() {
+        return userCrudRepository.findTopByOrderByIdDesc();
+    }
 
     public boolean existeEmail(String email) {
         Optional<User> usuario = userCrudRepository.findByEmail(email);
