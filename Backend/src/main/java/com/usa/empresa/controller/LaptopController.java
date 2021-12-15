@@ -43,5 +43,14 @@ public class LaptopController {
     public boolean delete(@PathVariable("id") Integer id) {
         return laptopService.delete(id);
     }
-
+         
+    @GetMapping("/price/{price}")
+    public List<Laptop> productsByPrice(@PathVariable("price") double precio){
+        return laptopService.productsByPrice(precio);
+    }
+        
+    @GetMapping("/description/{description}")
+    public List<Laptop> findByDescriptionLike(@PathVariable("description") String description){
+	return laptopService.findByDescriptionLike(description);
+    }  
 }
